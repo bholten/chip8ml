@@ -1,0 +1,4 @@
+(executable
+ (public_name chip8ml)
+ (name main)
+ (libraries chip8ml tsdl))
