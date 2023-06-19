@@ -37,11 +37,11 @@ let execute_instruction t = function
      NEXT
   | RET ->
      t.sp <- Uint8.(sub t.sp one);
-     t.pc <- t.stack.(Uint8.to_int t.sp);
+     t.pc <- Stack.read_uint8 t.stack t.sp;
      NEXT
   | JP_nnn nnn -> JUMP nnn
   | CALL_nnn nnn ->
-     t.stack.(Uint8.to_int t.sp) <- t.pc;
+     Stack.write_uint16 t.stack t.sp t.pc;
      t.sp <- Uint8.(add t.sp one);
      JUMP nnn
   | SE_Vx_nn (vx, nn) ->

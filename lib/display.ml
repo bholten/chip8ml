@@ -19,15 +19,11 @@ let character_set = [|
     0xf0; 0x80; 0xf0; 0x80; 0x80
   |]
 
-(* The original implementation of the Chip-8 language used a 64x32-pixel monochrome display *)
-let x_width = 64
-let y_height = 32
-
-let create () = Array.make_matrix y_height x_width false
+let create () = Array.make_matrix 32 64 false
 
 let clear (s : t) =
-  for x = 0 to x_width - 1 do
-    for y = 0 to y_height - 1 do
+  for x = 0 to 63 do
+    for y = 0 to 31 do
       s.(y).(x) <- false
     done
   done
